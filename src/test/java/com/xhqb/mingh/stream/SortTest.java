@@ -2,7 +2,7 @@ package com.xhqb.mingh.stream;
 
 import com.google.common.collect.Lists;
 import com.xhqb.mingh.beans.Book;
-import com.xhqb.mingh.common.CommonEnum;
+import com.xhqb.mingh.common.enums.CommonEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

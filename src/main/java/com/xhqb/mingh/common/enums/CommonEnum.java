@@ -1,4 +1,4 @@
-package com.xhqb.mingh.common;
+package com.xhqb.mingh.common.enums;
 
 import com.xhqb.mingh.beans.Book;
 

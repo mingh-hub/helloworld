@@ -3,11 +3,16 @@ package com.xhqb.mingh.stream;
 import com.google.common.collect.Lists;
 import com.xhqb.mingh.beans.Address;
 import com.xhqb.mingh.beans.User;
+import com.xhqb.mingh.common.enums.ResultEnum;
+import com.xhqb.mingh.common.exception.BusinessRuntimeException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import static org.junit.Assert.assertTrue;
 
@@ -43,6 +48,8 @@ public class ReduceTest {
      */
     @Test
     public void testReduceWithTwoParameter() {
+        Predicate<List<User>> predicate = CollectionUtils::isNotEmpty;
+        Optional.of(users).filter(predicate).orElseThrow(() -> new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING));
         // 收集集合中的所有名称并在前加上前缀
         String nameStr = users.stream().map(User::getChName).reduce(NAME_PREFIX, String::concat);
         System.out.println(nameStr);
@@ -85,15 +92,24 @@ public class ReduceTest {
      * prepare test data
      */
     static {
-        List<Address> zsAddressList = Lists.newArrayList();
-        zsAddressList.add(Address.builder().country("中国").province("安徽省").city("合肥市").area("庐阳区").street("长江中路367号").build());
-        zsAddressList.add(Address.builder().country("中国").province("安徽省").city("合肥市").area("包河区").street("桐城南路303号").build());
-        List<Address> lsAddressList = Lists.newArrayList();
-        lsAddressList.add(Address.builder().country("中国").province("安徽省").city("安庆市").area("大观区").street("纺织南路118号").build());
-        lsAddressList.add(Address.builder().country("中国").province("安徽省").city("安庆市").area("宜秀区").street("集贤北路1318号").build());
-        List<Address> wwAddressList = Lists.newArrayList();
-        wwAddressList.add(Address.builder().country("中国").province("上海市").city("上海市").area("闵行区").street("联友路58号").build());
-        wwAddressList.add(Address.builder().country("中国").province("上海市").city("上海市").area("杨浦区").street("政民路507号").build());
+        List<Address> zsAddressList = new ArrayList<Address>(){
+            {
+                add(Address.builder().country("中国").province("安徽省").city("合肥市").area("庐阳区").street("长江中路367号").build());
+                add(Address.builder().country("中国").province("安徽省").city("合肥市").area("包河区").street("桐城南路303号").build());
+            }
+        };
+        List<Address> lsAddressList = new ArrayList<Address>() {
+            {
+                add(Address.builder().country("中国").province("安徽省").city("安庆市").area("大观区").street("纺织南路118号").build());
+                add(Address.builder().country("中国").province("安徽省").city("安庆市").area("宜秀区").street("集贤北路1318号").build());
+            }
+        };
+        List<Address> wwAddressList = new ArrayList<Address>() {
+            {
+                add(Address.builder().country("中国").province("上海市").city("上海市").area("闵行区").street("联友路58号").build());
+                add(Address.builder().country("中国").province("上海市").city("上海市").area("杨浦区").street("政民路507号").build());
+            }
+        };
         users.add(User.builder().chName("张三").enName("zhangsan").age(18).salary(8000.00D).address(zsAddressList).build());
         users.add(User.builder().chName("李四").enName("lisi").age(23).salary(15000.00D).address(lsAddressList).build());
         users.add(User.builder().chName("王五").enName("wangwu").age(34).salary(28000.00D).address(wwAddressList).build());
