@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
  * reduce 可接收一个, 两个以及三个参数
  * 1. 一个参数: 求和, 求最大值最小值以及将序列中满足某个条件的数筛出来做运算等
  * 2. 两个参数: 将对应的数据筛选出来进行连接并在最前面添加特定值
- * 3. 三个参数:
+ * 3. 三个参数: 非并行时和两个参数一致, 第三个参数不起作用; 并行时第三个参数才会起作用
  */
 @Slf4j
 public class ReduceTest {
@@ -36,11 +36,37 @@ public class ReduceTest {
      *                  BiFunction<U, ? super T, U> accumulator,
      *                  BinaryOperator<U> combiner);
      *                  identity: 一个初始化的值；这个初始化的值其类型是泛型U，与Reduce方法返回的类型一致；注意此时Stream中元素的类型是T，与U可以不一样也可以一样，这样的话操作空间就大了
-     *                  accumulator:
+     *                  accumulator: 其类型是 BiFunction, 输入的是 U 和 T 两种类型数据, 返回 U 类型数据。返回的类型和第一个参数类型一致, 第二个参数类型和 Stream 中元素类型一致
+     *                  combiner: 其类型是 BinaryOperator，支持的是对 U 类型的对象进行操作; 并行操作时才起作用, 对各线程执行结果进行合并处理
      */
     @Test
     public void testReduceWithThreeParameter() {
-
+        // 对元素进行收集, 收集集合中用户英文名称
+        List<String> enNameList = users.stream()
+                .map(User::getEnName)
+                .reduce(Lists.newArrayList(),
+                        (u, t) -> {
+                            u.add(t); // 此处 u 类型和第一个输入参数的类型一致, 即为 List, t 和 Stream 中类型一致, 为 String 类型
+                            return u;
+                        },
+                        (u1, u2) -> u1);  //
+        log.info("enName list is {}", enNameList);
+        // 对元素进行过滤, 筛选英文名称中包含 ang 的值, 使用串行流会达到预期效果, 结果为 [wangwu, zhangsan], 并行会多出很多重复结果
+        Predicate<String> predicate = s -> s.contains("ang");
+        List<String> enNameContainAngList = users.parallelStream()
+                .map(User::getEnName)
+                .reduce(Lists.newArrayList(),
+                        (u, t) -> {
+                            if (predicate.test(t)) {
+                                u.add(t);
+                            }
+                            return u;
+                        },
+                        (u1, u2) -> {
+                            u1.addAll(u2);  // 如果使用并行流, 此处会启动三个线程(parallelStream 使用 ForkJoin 框架实现, 默认启动线程数量为 cpu 数量)
+                            return u2;  // 每个线程的执行结果为[wangwu, zhangsan], 合并计算为 [wangwu, zhangsan, wangwu, zhangsan, wangwu, zhangsan, wangwu, zhangsan]
+                        });
+        log.info("enNameContainAngList list is {}", enNameContainAngList);
     }
 
     /**
