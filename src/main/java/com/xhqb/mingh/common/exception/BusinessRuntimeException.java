@@ -25,16 +25,16 @@ public class BusinessRuntimeException extends RuntimeException {
     private ResultEnum resultEnum;
 
     public BusinessRuntimeException() {
-        this.errorCode = ResultEnum.FAILURE.getCode();
-        this.errorMsg = ResultEnum.FAILURE.getMsg();
     }
 
     public BusinessRuntimeException(String errorCode, String errorMsg) {
+        super(errorMsg);
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }
 
     public BusinessRuntimeException(ResultEnum resultEnum) {
+        super(resultEnum.getMsg());
         this.errorCode = resultEnum.getCode();
         this.errorMsg = resultEnum.getMsg();
     }

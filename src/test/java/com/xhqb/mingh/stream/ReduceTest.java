@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * 作用: 根据一定的规则将 Stream 中的元素进行计算后再返回一个唯一的值
@@ -87,31 +87,31 @@ public class ReduceTest {
     @Test
     public void testReduceWithOneParameter() {
         // mapToDouble 实现工资求和
-        Double sumSalaryByMapToDouble = users.stream().mapToDouble(User::getSalary).sum();
+        double sumSalaryByMapToDouble = users.stream().mapToDouble(User::getSalary).sum();
         log.info("sumSalaryByMapToDouble=====>" + sumSalaryByMapToDouble);
-        assertTrue(51000 == sumSalaryByMapToDouble);
+        assertEquals(51000, (double) sumSalaryByMapToDouble, 0.0);
         // reduce 实现工资求和
         Optional<Double> sumSalaryByReduce = users.stream().map(User::getSalary).reduce(Double::sum);
         log.info("sumSalaryByReduce=====>" + sumSalaryByReduce);
-        assertTrue(51000 == sumSalaryByReduce.get());
+        assertEquals(51000, (double) sumSalaryByReduce.get(), 0.0);
 
         // max 实现工资求最大值
         Optional<Double> maxSalaryByMax = users.stream().map(User::getSalary).max(Double::compareTo);
         log.info("maxSalaryByMax=====>" + maxSalaryByMax);
-        assertTrue(28000D == maxSalaryByMax.get());
+        assertEquals(28000D, maxSalaryByMax.get(), 0.0);
         // reduce 实现工资求最大值
         Optional<Double> maxSalaryByReduce = users.stream().map(User::getSalary).reduce((a, b) -> a >= b ? a : b);
         log.info("maxSalaryByReduce=====>" + maxSalaryByReduce);
-        assertTrue(28000D == maxSalaryByReduce.get());
+        assertEquals(28000D, maxSalaryByReduce.get(), 0.0);
 
         // max 实现工资求小值
         Optional<Double> minSalaryByMax = users.stream().map(User::getSalary).min(Double::compareTo);
         log.info("minSalaryByMax=====>" + minSalaryByMax);
-        assertTrue(8000D == minSalaryByMax.get());
+        assertEquals(8000D, minSalaryByMax.get(), 0.0);
         // reduce 实现工资求最小值
         Optional<Double> minSalaryByReduce = users.stream().map(User::getSalary).reduce((a, b) -> a >= b ? b : a);
         log.info("minSalaryByReduce=====>" + minSalaryByReduce);
-        assertTrue(8000D == minSalaryByReduce.get());
+        assertEquals(8000D, minSalaryByReduce.get(), 0.0);
     }
 
     /**
