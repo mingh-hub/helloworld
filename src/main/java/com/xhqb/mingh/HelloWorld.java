@@ -26,6 +26,5 @@ public class HelloWorld {
 //        intList.parallelStream().forEach(System.out::println);  // random
 //        intList.parallelStream().forEachOrdered(System.out::println);  // FIFO
         intList.parallelStream().sorted(Integer::compareTo).forEachOrdered(System.out::println);  // ordered
-
     }
 }
