@@ -16,6 +16,18 @@ public enum ResultEnum {
      * 参数缺失
      */
     PARAMS_IS_MISSING("000001","参数缺失, 请稍后再试"),
+    /**
+     * IO 操作异常
+     */
+    IO_EXCEPTION("000002", "IO 操作异常"),
+    /**
+     * 文件获取失败
+     */
+    FILE_NOT_FOUND("000003", "文件不存在"),
+    /**
+     * 文件目录不存在
+     */
+    FILE_PATH_NOT_FOUND("000003", "文件目录不存在"),
     ;
      private String code;
      private String msg;
