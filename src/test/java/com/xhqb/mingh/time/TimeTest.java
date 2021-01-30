@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.*;
-import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
@@ -52,7 +51,7 @@ public class TimeTest {
         log.info("next friday is {}", nextFriday);
         // 时间转化
         log.info("===============local date time transfer=================");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(CommonConstants.DATE_TIME_FORMAT);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(CommonConstants.DATE_FORMATTER_YYYY_MM_DD_HH_MM_SS);
         String localDateTimeStr1 = LocalDateTime.now().format(formatter);
         String localDateTimeStr2 = formatter.format(LocalDateTime.now());
         log.info("System current LocalDateTime string localDateTimeStr1 is {}", localDateTimeStr1);
@@ -98,7 +97,7 @@ public class TimeTest {
         LocalTime localTime = LocalTime.now();
         log.info("System current local time is {}", localTime);
         // 获取当前系统时间并转为 String
-        String localTimeStr = LocalTime.now().format(DateTimeFormatter.ofPattern(CommonConstants.TIME_FORMAT));
+        String localTimeStr = LocalTime.now().format(DateTimeFormatter.ofPattern(CommonConstants.DATE_FORMATTER_HH_MM_SS));
         log.info("System current local time string is {}", localTimeStr);
         // 获取时, 分, 秒
         int hour = LocalTime.now().getHour();
