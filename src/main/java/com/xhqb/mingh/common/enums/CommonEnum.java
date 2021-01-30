@@ -7,6 +7,12 @@ import com.xhqb.mingh.beans.Book;
  */
 public class CommonEnum {
 
+    /**
+     * @MethodName BookType
+     * @Author Hai.Ming
+     * @Date 2021/1/29 8:53 下午
+     * @Description 书籍枚举
+     **/
     public enum BookType {
         /**
          * Effective Java

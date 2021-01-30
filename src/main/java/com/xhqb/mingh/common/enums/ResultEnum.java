@@ -27,7 +27,11 @@ public enum ResultEnum {
     /**
      * 文件目录不存在
      */
-    FILE_PATH_NOT_FOUND("000003", "文件目录不存在"),
+    FILE_PATH_NOT_FOUND("000004", "文件目录不存在"),
+    /**
+     * 日期格式错误
+     */
+    DATE_TIME_FORMATTER_ERROR("000005", "日期格式错误"),
     ;
      private String code;
      private String msg;
