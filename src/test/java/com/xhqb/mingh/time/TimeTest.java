@@ -59,30 +59,31 @@ public class TimeTest {
         // 时间增加
         log.info("===============plus  local date time=================");
         LocalDateTime plusLocalDateTimeWithPeriod = LocalDateTime.now().plus(Period.ofDays(10));
-        log.info("plus LocalDateTime with period {}", plusLocalDateTimeWithPeriod);
+        log.info("plus LocalDateTime with period is {}", plusLocalDateTimeWithPeriod);
         LocalDateTime plusLocalDateTimeWithUnit = LocalDateTime.now().plus(10, ChronoUnit.DAYS);
-        log.info("plus LocalDateTime with unit {}", plusLocalDateTimeWithUnit);
+        log.info("plus LocalDateTime with unit is {}", plusLocalDateTimeWithUnit);
         LocalDateTime plusLocalDateTimeWithYears = LocalDateTime.now().plusYears(10);
-        log.info("plus LocalDateTime with year {}", plusLocalDateTimeWithYears);
+        log.info("plus LocalDateTime with year is {}", plusLocalDateTimeWithYears);
         LocalDateTime plusLocalDateTimeWithDays = LocalDateTime.now().plusDays(10);
-        log.info("plus LocalDateTime with day {}", plusLocalDateTimeWithDays);
+        log.info("plus LocalDateTime with day is {}", plusLocalDateTimeWithDays);
         // 时间减少
         log.info("===============minus local date time=================");
         LocalDateTime minusLocalDateTimeWithPeriod = LocalDateTime.now().minus(Period.ofDays(10));
-        log.info("minus LocalDateTime with period {}", minusLocalDateTimeWithPeriod);
+        log.info("minus LocalDateTime with period is {}", minusLocalDateTimeWithPeriod);
         LocalDateTime minusLocalDateTimeWithUnit = LocalDateTime.now().minus(10, ChronoUnit.DAYS);
-        log.info("minus LocalDateTime with unit {}", minusLocalDateTimeWithUnit);
+        log.info("minus LocalDateTime with unit is {}", minusLocalDateTimeWithUnit);
         LocalDateTime minusLocalDateTimeWithYears = LocalDateTime.now().minusYears(10);
-        log.info("minus LocalDateTime with year {}", minusLocalDateTimeWithYears);
+        log.info("minus LocalDateTime with year is {}", minusLocalDateTimeWithYears);
         LocalDateTime minusLocalDateTimeWithDays = LocalDateTime.now().minusDays(10);
-        log.info("minus LocalDateTime with day {}", minusLocalDateTimeWithDays);
+        log.info("minus LocalDateTime with day is {}", minusLocalDateTimeWithDays);
         // 时间比较
         log.info("===============compare local date time=================");
         LocalDateTime currentLocalDateTime = LocalDateTime.now();
         LocalDateTime nextLocalDateTime = LocalDateTime.now().plus(1, ChronoUnit.DAYS);
-        log.info("currentLocalDateTime compare to nextLocalDateTime {}", currentLocalDateTime.compareTo(nextLocalDateTime));
-        log.info("currentLocalDateTime is before nextLocalDateTime {}", currentLocalDateTime.isBefore(nextLocalDateTime));
-        log.info("currentLocalDateTime is after nextLocalDateTime {}", currentLocalDateTime.isAfter(nextLocalDateTime));
+        log.info("currentLocalDateTime compare to nextLocalDateTime is {}", currentLocalDateTime.compareTo(currentLocalDateTime));
+        log.info("currentLocalDateTime equals currentLocalDateTime is {}", currentLocalDateTime.equals(nextLocalDateTime));
+        log.info("currentLocalDateTime is before nextLocalDateTime is {}", currentLocalDateTime.isBefore(nextLocalDateTime));
+        log.info("currentLocalDateTime is after nextLocalDateTime is {}", currentLocalDateTime.isAfter(nextLocalDateTime));
     }
 
     /**
