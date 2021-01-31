@@ -8,6 +8,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 
 import static java.time.temporal.ChronoField.DAY_OF_MONTH;
 import static java.time.temporal.ChronoField.DAY_OF_YEAR;
@@ -56,8 +57,12 @@ public class TimeTest {
         String localDateTimeStr2 = formatter.format(LocalDateTime.now());
         log.info("System current LocalDateTime string localDateTimeStr1 is {}", localDateTimeStr1);
         log.info("System current LocalDateTime string localDateTimeStr2 is {}", localDateTimeStr2);
+        LocalDateTime date2LocalDateTime = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        log.info("System current date transfer to localDateTime is {}", date2LocalDateTime);
+        Date localDateTime2Date = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+        log.info("System current localDateTime transfer to date is {}", localDateTime2Date);
         // 时间增加
-        log.info("===============plus  local date time=================");
+        log.info("===============plus local date time=================");
         LocalDateTime plusLocalDateTimeWithPeriod = LocalDateTime.now().plus(Period.ofDays(10));
         log.info("plus LocalDateTime with period is {}", plusLocalDateTimeWithPeriod);
         LocalDateTime plusLocalDateTimeWithUnit = LocalDateTime.now().plus(10, ChronoUnit.DAYS);
