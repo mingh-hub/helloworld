@@ -1,11 +1,198 @@
 package com.xhqb.mingh.common.enums;
 
 import com.xhqb.mingh.beans.Book;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
 
 /**
- * 常用枚举类
- */
+ * @MethodName
+ * @Author Hai.Ming
+ * @Date 2021/2/1 8:35 下午
+ * @Description 常用枚举类
+ **/
 public class CommonEnum {
+
+    /**
+     * @MethodName
+     * @Author Hai.Ming
+     * @Date 2021/2/1 8:21 下午
+     * @Description 文件类型
+     **/
+    public enum FileType{
+        /**
+         * JPEG (jpg)
+         **/
+        FILE_TYPE_JPG("jpg","FFD8FF"),
+        /**
+         * PNG (png)
+         **/
+        FILE_TYPE_PNG("png","89504E47"),
+        /**
+         * GIF (gif)
+         **/
+        FILE_TYPE_GIF("gif","47494638"),
+        /**
+         * TIFF (tif)
+         **/
+        FILE_TYPE_TIF("tif","49492A00"),
+        /**
+         * Windows Bitmap (bmp)
+         **/
+        FILE_TYPE_BMP("bmp","424D"),
+        /**
+         * CAD (dwg)
+         **/
+        FILE_TYPE_DWG("dwg","41433130"),
+        /**
+         * HTML (html)
+         **/
+        FILE_TYPE_HTML("html","68746D6C3E"),
+        /**
+         * Rich Text Format (rtf)
+         **/
+        FILE_TYPE_RTF("rtf","7B5C727466"),
+        /**
+         * XML
+         **/
+        FILE_TYPE_XML("xml","3C3F786D6C"),
+        /**
+         * ZIP
+         **/
+        FILE_TYPE_ZIP("zip","504B0304"),
+        /**
+         * RAR
+         **/
+        FILE_TYPE_RAR("rar","52617221"),
+        /**
+         * PSD
+         **/
+        FILE_TYPE_PSD("psd","52617221"),
+        /**
+         * EML
+         **/
+        FILE_TYPE_EML("eml","44656C69766572792D646174653A"),
+        /**
+         * DBX
+         **/
+        FILE_TYPE_DBX("dbx","CFAD12FEC5FD746F"),
+        /**
+         * Outlook (pst)
+         **/
+        FILE_TYPE_PST("pst","2142444E"),
+        /**
+         * MS Word
+         **/
+        FILE_TYPE_XLS("xls","D0CF11E0"),
+        /**
+         * MS Excel 注意：word 和 excel的文件头一样
+         **/
+        FILE_TYPE_DOC("doc","D0CF11E0"),
+        /**
+         * MS Access (mdb)
+         **/
+        FILE_TYPE_MDB("mdb","5374616E64617264204A"),
+        /**
+         * WordPerfect (wpd
+         **/
+        FILE_TYPE_WPD("wpd","FF575043"),
+        /**
+         * EPS
+         **/
+        FILE_TYPE_EPS("eps","252150532D41646F6265"),
+        /**
+         * PS
+         **/
+        FILE_TYPE_PS("ps","252150532D41646F6265"),
+        /**
+         * Adobe Acrobat (pdf)
+         **/
+        FILE_TYPE_PDF("pdf","255044462D312E"),
+        /**
+         * Quicken (qdf)
+         **/
+        FILE_TYPE_QDF("qdf","AC9EBD8F"),
+        /**
+         * Windows Password (pwl)
+         **/
+        FILE_TYPE_PWL("pwl","E3828596"),
+        /**
+         * Wave (wav)
+         **/
+        FILE_TYPE_WAV("wav","57415645"),
+        /**
+         * AVI
+         **/
+        FILE_TYPE_AVI("avi","41564920"),
+        /**
+         * Real Audio (ram)
+         **/
+        FILE_TYPE_RAM("ram","2E7261FD"),
+        /**
+         * Real Media (rm)
+         **/
+        FILE_TYPE_RM("rm","2E524D46"),
+        /**
+         * MPG
+         **/
+        FILE_TYPE_MPG("mpg","000001BA"),
+        /**
+         * Quicktime (mov)
+         **/
+        FILE_TYPE_MOV("mov","6D6F6F76"),
+        /**
+         * Windows Media (asf)
+         **/
+        FILE_TYPE_ASF("asf","3026B2758E66CF11"),
+        /**
+         * MIDI (mid)
+         **/
+        FILE_TYPE_MID("mid","4D546864"),
+        ;
+        /**
+         * 文件类型
+         **/
+        private String type;
+        /**
+         * 数据前缀
+         **/
+        private String prefix;
+
+        /**
+         * @MethodName getFileTypeByPrefix
+         * @Author Hai.Ming
+         * @Date 2021/2/1 8:57 下午
+         * @Description get file type by file data
+         **/
+        public static String getFileTypeByData(String data) {
+            return Arrays.stream(values())
+                    .filter(type -> StringUtils.startsWith(data, type.getPrefix()))
+                    .map(FileType::getType)
+                    .findAny()
+                    .orElse(StringUtils.EMPTY);
+        }
+
+        FileType(String type, String prefix) {
+            this.type = type;
+            this.prefix = prefix;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getPrefix() {
+            return prefix;
+        }
+
+        public void setPrefix(String prefix) {
+            this.prefix = prefix;
+        }
+    }
 
     /**
      * @MethodName BookType

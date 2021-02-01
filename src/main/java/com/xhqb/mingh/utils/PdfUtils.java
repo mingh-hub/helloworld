@@ -10,24 +10,30 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 /**
- * PDF 文件操作工具类
- */
+ * @MethodName
+ * @Author Hai.Ming
+ * @Date 2021/2/1 9:06 下午
+ * @Description PDF 文件操作工具类
+ **/
 @Slf4j
 public class PdfUtils {
-    //经过测试,dpi为96,100,105,120,150,200中,105显示效果较为清晰,体积稳定,dpi越高图片体积越大,一般电脑显示分辨率为96
+    /**
+     * 经过测试,dpi为96,100,105,120,150,200中,105显示效果较为清晰,体积稳定,dpi越高图片体积越大,一般电脑显示分辨率为96
+     **/
     public static final float DEFAULT_DPI = 105;
-    //默认转换的图片格式为jpg
+    /**
+     * 默认转换的图片格式为jpg
+     **/
     public static final String DEFAULT_FORMAT = "jpg";
 
     /**
-     * pdf转图片
-     *
-     * @param pdfPath PDF路径
-     * @return 图片路径
-     */
+     * @MethodName pdfToImage
+     * @Author Hai.Ming
+     * @Date 2021/2/1 8:20 下午
+     * @Description pdf转图片
+     **/
     public static void pdfToImage(String pdfPath, String imgPath) {
         try {
-
             System.setProperty("sun.java2d.cmm","sun.java2d.cmm.kcms.KcmsServiceProvider");
             //图像合并使用参数
             // 总宽度
