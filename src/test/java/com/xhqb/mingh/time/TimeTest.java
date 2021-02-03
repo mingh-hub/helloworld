@@ -53,9 +53,12 @@ public class TimeTest {
         // 时间转化
         log.info("===============local date time transfer=================");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(CommonConstants.DATE_FORMATTER_YYYY_MM_DD_HH_MM_SS);
+        String localDateTimeStr = "2020-11-11T11:11:11";
+        LocalDateTime localDateTime1 = LocalDateTime.parse(localDateTimeStr);
+        log.info("transfer string to localDateTime is {}", localDateTime1);
         String localDateTimeStr1 = LocalDateTime.now().format(formatter);
-        String localDateTimeStr2 = formatter.format(LocalDateTime.now());
         log.info("System current LocalDateTime string localDateTimeStr1 is {}", localDateTimeStr1);
+        String localDateTimeStr2 = formatter.format(LocalDateTime.now());
         log.info("System current LocalDateTime string localDateTimeStr2 is {}", localDateTimeStr2);
         LocalDateTime date2LocalDateTime = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         log.info("System current date transfer to localDateTime is {}", date2LocalDateTime);
