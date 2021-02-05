@@ -65,7 +65,7 @@ public class TimeTest {
         Date localDateTime2Date = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
         log.info("System current localDateTime transfer to date is {}", localDateTime2Date);
         // 时间增加
-        log.info("===============plus local date time=================");
+        log.info("===============local date time plus=================");
         LocalDateTime plusLocalDateTimeWithPeriod = LocalDateTime.now().plus(Period.ofDays(10));
         log.info("plus LocalDateTime with period is {}", plusLocalDateTimeWithPeriod);
         LocalDateTime plusLocalDateTimeWithUnit = LocalDateTime.now().plus(10, ChronoUnit.DAYS);
@@ -75,7 +75,7 @@ public class TimeTest {
         LocalDateTime plusLocalDateTimeWithDays = LocalDateTime.now().plusDays(10);
         log.info("plus LocalDateTime with day is {}", plusLocalDateTimeWithDays);
         // 时间减少
-        log.info("===============minus local date time=================");
+        log.info("===============local date time minus=================");
         LocalDateTime minusLocalDateTimeWithPeriod = LocalDateTime.now().minus(Period.ofDays(10));
         log.info("minus LocalDateTime with period is {}", minusLocalDateTimeWithPeriod);
         LocalDateTime minusLocalDateTimeWithUnit = LocalDateTime.now().minus(10, ChronoUnit.DAYS);
@@ -85,7 +85,7 @@ public class TimeTest {
         LocalDateTime minusLocalDateTimeWithDays = LocalDateTime.now().minusDays(10);
         log.info("minus LocalDateTime with day is {}", minusLocalDateTimeWithDays);
         // 时间比较
-        log.info("===============compare local date time=================");
+        log.info("===============local date time compare=================");
         LocalDateTime currentLocalDateTime = LocalDateTime.now();
         LocalDateTime nextLocalDateTime = LocalDateTime.now().plus(1, ChronoUnit.DAYS);
         log.info("currentLocalDateTime compare to nextLocalDateTime is {}", currentLocalDateTime.compareTo(currentLocalDateTime));

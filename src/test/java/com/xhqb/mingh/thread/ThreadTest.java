@@ -109,7 +109,7 @@ public class ThreadTest {
     public void testCreateThreadByExtendThread() throws InterruptedException {
         ExtendThread.builder().build().start();
         ExtendThread.builder().build().start();
-        // 调用 start() 后, 线程处于激活状态, 但 junit 已经执行完了, 不会输出任何结果, 需要将线程休眠一顿时间, 控制台才会有日志打印
+        // 调用 start() 后, 线程处于激活状态, 但 junit 已经执行完了, 不会输出任何结果, 需要将线程休眠一段时间, 控制台才会有日志输出
         Thread.sleep(3000);
     }
 }
