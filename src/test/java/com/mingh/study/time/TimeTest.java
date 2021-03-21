@@ -17,10 +17,20 @@ import static java.time.temporal.ChronoField.DAY_OF_YEAR;
  * @ClassName TimeTest
  * @Author Hai.Ming
  * @Date 2021/1/27 8:53 下午
- * @Description 时间工具类测试
+ * @Description Java 8 Time 相关测试
  */
 @Slf4j
 public class TimeTest {
+
+    @Test
+    public void test() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextDay = now.plusDays(1);
+        Long nowMilliSecond = now.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        Long nextMilliSecond = nextDay.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        log.info(String.valueOf(Math.abs((nextMilliSecond - nowMilliSecond) / 1000 / 60 / 60 / 24)));
+        log.info(String.valueOf(Math.abs((nowMilliSecond - nextMilliSecond) / 1000 / 60 / 60 / 24)));
+    }
 
     /**
      * @MethodName testLocalDateTime
@@ -87,8 +97,8 @@ public class TimeTest {
         // 时间比较
         log.info("===============local date time compare=================");
         LocalDateTime currentLocalDateTime = LocalDateTime.now();
-        LocalDateTime nextLocalDateTime = LocalDateTime.now().plus(1, ChronoUnit.DAYS);
-        log.info("currentLocalDateTime compare to nextLocalDateTime is {}", currentLocalDateTime.compareTo(currentLocalDateTime));
+        LocalDateTime nextLocalDateTime = LocalDateTime.now().plusDays(1);
+        log.info("currentLocalDateTime compare to nextLocalDateTime is {}", currentLocalDateTime.compareTo(nextLocalDateTime));
         log.info("currentLocalDateTime equals currentLocalDateTime is {}", currentLocalDateTime.equals(nextLocalDateTime));
         log.info("currentLocalDateTime is before nextLocalDateTime is {}", currentLocalDateTime.isBefore(nextLocalDateTime));
         log.info("currentLocalDateTime is after nextLocalDateTime is {}", currentLocalDateTime.isAfter(nextLocalDateTime));
