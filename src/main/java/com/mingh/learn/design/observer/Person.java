@@ -1,4 +1,4 @@
-package com.mingh.learn.design.oberver;
+package com.mingh.learn.design.observer;
 
 import lombok.Builder;
 import lombok.Data;

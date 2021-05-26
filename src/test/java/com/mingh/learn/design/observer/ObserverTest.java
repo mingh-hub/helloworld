@@ -1,7 +1,5 @@
 package com.mingh.learn.design.observer;
 
-import com.mingh.learn.design.oberver.House;
-import com.mingh.learn.design.oberver.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

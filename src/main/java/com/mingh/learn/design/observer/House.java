@@ -1,4 +1,4 @@
-package com.mingh.learn.design.oberver;
+package com.mingh.learn.design.observer;
 
 import lombok.extern.slf4j.Slf4j;
 
