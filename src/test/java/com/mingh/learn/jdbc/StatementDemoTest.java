@@ -1,7 +1,7 @@
 package com.mingh.learn.jdbc;
 
 import com.mingh.learn.common.constant.CommonConstants;
-import com.mingh.learn.jdbc.bean.TestBean;
+import com.mingh.learn.jdbc.bean.SqlBean;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class StatementDemoTest {
         // 同样原理, 如果更新也进行 sql 注入的话, 数据库数据全部都会被更新
         String userName = "张三' OR '1'='1";
         String connSql = "select id, name, age, birthday, description, create_time, update_time from test where name='" + userName + "'";
-        List<TestBean> result = statementDemo.selectWithStatement(connSql);
+        List<SqlBean> result = statementDemo.selectWithStatement(connSql);
         log.info("查询结果:{}", result);
     }
 
@@ -55,12 +55,12 @@ public class StatementDemoTest {
     public void testForStringJoint() throws Exception {
         // 正常查询没问题
         String sql = "select id, name, age, birthday, description, create_time, update_time from test where name='张三'";
-        List<TestBean> result = statementDemo.selectWithStatement(sql);
+        List<SqlBean> result = statementDemo.selectWithStatement(sql);
         log.info("正常查询结果:{}", result);
         // 如果是接收前端入参, 用 Statement 极可能出现由 sql 拼接所导致的问题。java.sql.SQLSyntaxErrorException
         String userName = "Mr'Smith";
         String connSql = "select id, name, age, birthday, description, create_time, update_time from test where name='" + userName + "'";
-        List<TestBean> connResult = statementDemo.selectWithStatement(connSql);
+        List<SqlBean> connResult = statementDemo.selectWithStatement(connSql);
         log.info("拼接字符串查询结果:{}", connResult);
     }
 }

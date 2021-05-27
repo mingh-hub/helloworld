@@ -1,9 +1,13 @@
 package com.mingh.learn.jdbc;
 
 import com.mingh.learn.common.constant.CommonConstants;
+import com.mingh.learn.jdbc.bean.SqlBean;
+import com.mingh.learn.utils.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 /**
  * @ClassName PreparedStatementDemoTest
@@ -28,6 +32,14 @@ public class PreparedStatementDemoTest {
 
     @Test
     public void testInsert() throws Exception {
-        String sql = "insert into test(id, name, age, birthday, description, create_time, update_time) values (myseq.nextval, ?, ?, ?, ?, ?, ?)";
+        SqlBean bean = SqlBean.builder()
+                .name("王五")
+                .age(24)
+                .birthday(LocalDate.of(1990, 11, 27))
+                .description("是个爱打麻将的人")
+                .createTime(TimeUtils.now())
+                .updateTime(TimeUtils.now())
+                .build();
+        demo.add(bean);
     }
 }

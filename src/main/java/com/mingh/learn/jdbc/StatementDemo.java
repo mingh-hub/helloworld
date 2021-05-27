@@ -1,7 +1,7 @@
 package com.mingh.learn.jdbc;
 
 import com.google.common.collect.Lists;
-import com.mingh.learn.jdbc.bean.TestBean;
+import com.mingh.learn.jdbc.bean.SqlBean;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +37,7 @@ public class StatementDemo {
      * @Date 2021/5/26 19:54
      * @Description Statement 查询操作
      **/
-    public List<TestBean> selectWithStatement(String sql) throws Exception {
+    public List<SqlBean> selectWithStatement(String sql) throws Exception {
         // 1. 加载数据库驱动程序
         Class.forName(dbDriver);
         // 2. 连接数据库
@@ -44,13 +45,13 @@ public class StatementDemo {
         // 3. 操作数据库
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(sql);
-        List<TestBean> beans = Lists.newArrayList();
+        List<SqlBean> beans = Lists.newArrayList();
         while (Objects.nonNull(rs) && rs.next()) {
-            beans.add(TestBean.builder()
+            beans.add(SqlBean.builder()
                     .id(rs.getLong(1))
                     .name(rs.getString(2))
                     .age(rs.getInt(3))
-                    .birthday(rs.getObject(4, LocalDateTime.class))
+                    .birthday(rs.getObject(4, LocalDate.class))
                     .description(rs.getString(5))
                     .createTime(rs.getObject(6, LocalDateTime.class))
                     .updateTime(rs.getObject(7, LocalDateTime.class))
