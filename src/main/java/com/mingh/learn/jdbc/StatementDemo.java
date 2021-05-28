@@ -32,12 +32,12 @@ public class StatementDemo {
     private String password;
 
     /**
-     * @MethodName selectWithStatement
+     * @MethodName queryWithStatement
      * @Author Hai.Ming
      * @Date 2021/5/26 19:54
      * @Description Statement 查询操作
      **/
-    public List<SqlBean> selectWithStatement(String sql) throws Exception {
+    public List<SqlBean> queryWithStatement(String sql) throws Exception {
         // 1. 加载数据库驱动程序
         Class.forName(dbDriver);
         // 2. 连接数据库

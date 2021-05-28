@@ -32,6 +32,10 @@ public enum ResultEnum {
      * 日期格式错误
      */
     DATE_TIME_FORMATTER_ERROR("000005", "日期格式错误"),
+    /**
+     * 没有结果
+     */
+    NO_RESULT("000006", "没有结果"),
     ;
      private String code;
      private String msg;

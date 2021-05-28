@@ -1,5 +1,6 @@
 package com.mingh.learn.jdbc;
 
+import com.google.common.collect.Lists;
 import com.mingh.learn.common.enums.ResultEnum;
 import com.mingh.learn.common.exception.BusinessRuntimeException;
 import com.mingh.learn.jdbc.bean.SqlBean;
@@ -11,6 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,10 +33,47 @@ public class PreparedStatementDemo {
     private Connection conn;
 
     /**
+     * @MethodName queryAll
+     * @Author Hai.Ming
+     * @Date 2021/5/28 20:53
+     * @Description PreparedStatement-查询所有数据
+     **/
+    public List<SqlBean> queryAll() throws Exception{
+        String queryAllSql = "";
+        PreparedStatement pstmt = conn.prepareStatement(queryAllSql);
+        ResultSet rs = pstmt.executeQuery();
+        if (Objects.isNull(rs)) {
+            throw new BusinessRuntimeException(ResultEnum.NO_RESULT);
+        }
+        List<SqlBean> results = Lists.newArrayList();
+        while (rs.next()) {
+            // TODO: 2021/5/28 处理结果
+        }
+        conn.close();
+        return results;
+    }
+
+    /**
+     * @MethodName updateById
+     * @Author Hai.Ming
+     * @Date 2021/5/28 20:46
+     * @Description PreparedStatement-根据 id 更新描述信息
+     **/
+    public boolean updateById(long id, String desc) throws Exception{
+        String updateSql = "update test set description=? where id =?";
+        PreparedStatement pstmt = conn.prepareStatement(updateSql);
+        pstmt.setString(1, desc);
+        pstmt.setLong(2, id);
+        int i = pstmt.executeUpdate();
+        conn.close();
+        return i == 1;
+    }
+
+    /**
      * @MethodName batchAddWithException
      * @Author Hai.Ming
      * @Date 2021/5/28 19:48
-     * @Description 测试批量新增出错, 是否开启自动提交
+     * @Description PreparedStatement-测试批量新增出错, 是否开启自动提交
      **/
     public void batchAddWithException(List<SqlBean> beans) throws Exception {
         if (CollectionUtils.isEmpty(beans)) {

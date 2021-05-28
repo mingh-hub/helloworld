@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 public class PreparedStatementDemoTest {
 
-    private PreparedStatementDemo demo;
+    private PreparedStatementDemo preparedStatement;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -30,13 +30,24 @@ public class PreparedStatementDemoTest {
         Class.forName(CommonConstants.DB_DRIVER);
         // 连接数据库
         Connection conn = DriverManager.getConnection(CommonConstants.DB_URL, CommonConstants.DB_NAME, CommonConstants.DB_PASSWORD);
-        demo = PreparedStatementDemo.builder()
+        preparedStatement = PreparedStatementDemo.builder()
                 .dbDriver(CommonConstants.DB_DRIVER)
                 .dbUrl(CommonConstants.DB_URL)
                 .userName(CommonConstants.DB_NAME)
                 .password(CommonConstants.DB_PASSWORD)
                 .conn(conn)
                 .build();
+    }
+
+    /**
+     * @MethodName testUpdate
+     * @Author Hai.Ming
+     * @Date 2021/5/28 20:50
+     * @Description 测试更新
+     **/
+    @Test
+    public void testUpdate() throws Exception {
+        preparedStatement.updateById(2, "是个混吃等死的人");
     }
 
     /**
@@ -51,7 +62,7 @@ public class PreparedStatementDemoTest {
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
 
-        demo.batchAddWithException(beanList);
+        preparedStatement.batchAddWithException(beanList);
     }
 
     /**
@@ -65,7 +76,7 @@ public class PreparedStatementDemoTest {
         List<SqlBean> beanList = Lists.newArrayList();
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
-        demo.batchAdd(beanList);
+        preparedStatement.batchAdd(beanList);
     }
 
     /**
@@ -76,7 +87,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testAdd() throws Exception {
-        demo.add(this.buildSqlBean("王五", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
+        preparedStatement.add(this.buildSqlBean("王五", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
     }
 
     private SqlBean buildSqlBean(String name, int age, LocalDate birthday, String desc) {
