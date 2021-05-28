@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,12 +25,17 @@ public class PreparedStatementDemoTest {
     private PreparedStatementDemo demo;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
+        // 加载数据库驱动程序
+        Class.forName(CommonConstants.DB_DRIVER);
+        // 连接数据库
+        Connection conn = DriverManager.getConnection(CommonConstants.DB_URL, CommonConstants.DB_NAME, CommonConstants.DB_PASSWORD);
         demo = PreparedStatementDemo.builder()
                 .dbDriver(CommonConstants.DB_DRIVER)
                 .dbUrl(CommonConstants.DB_URL)
                 .userName(CommonConstants.DB_NAME)
                 .password(CommonConstants.DB_PASSWORD)
+                .conn(conn)
                 .build();
     }
 

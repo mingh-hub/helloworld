@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +28,7 @@ public class PreparedStatementDemo {
     private String dbUrl;
     private String userName;
     private String password;
+    private Connection conn;
 
     /**
      * @MethodName batchAddWithException
@@ -40,10 +40,6 @@ public class PreparedStatementDemo {
         if (CollectionUtils.isEmpty(beans)) {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
-        // 加载数据库驱动程序
-        Class.forName(dbDriver);
-        // 连接数据库
-        Connection conn = DriverManager.getConnection(dbUrl, userName, password);
         conn.setAutoCommit(false);
         try {
             // 预处理数据
@@ -81,10 +77,6 @@ public class PreparedStatementDemo {
         if (CollectionUtils.isEmpty(beans)) {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
-        // 加载数据库驱动程序
-        Class.forName(dbDriver);
-        // 连接数据库
-        Connection conn = DriverManager.getConnection(dbUrl, userName, password);
         // 预处理数据
         String sql = "insert into test(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_dev_num'), ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -111,10 +103,6 @@ public class PreparedStatementDemo {
         if (Objects.isNull(bean)) {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
-        // 加载数据库驱动程序
-        Class.forName(dbDriver);
-        // 连接数据库
-        Connection conn = DriverManager.getConnection(dbUrl, userName, password);
         // 预处理数据
         String sql = "insert into test(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_dev_num'), ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
