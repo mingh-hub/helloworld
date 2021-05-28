@@ -1,7 +1,10 @@
 package com.mingh.learn.utils;
 
 import java.sql.Timestamp;
-import java.time.*;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -31,14 +34,32 @@ public class TimeUtils {
         return LocalDateTime.now(clock);
     }
 
+    /**
+     * @MethodName format
+     * @Author Hai.Ming
+     * @Date 2021/5/28 10:05
+     * @Description 按指定格式转化指定 LocalDateTime 为 String
+     **/
     public static String format(LocalDateTime dateTime, String pattern) {
         return dateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
 
+    /**
+     * @MethodName format
+     * @Author Hai.Ming
+     * @Date 2021/5/28 10:04
+     * @Description 按指定格式转化指定 LocalDate 为 String
+     **/
     public static String format(LocalDate localDate, String pattern) {
         return localDate.format(DateTimeFormatter.ofPattern(pattern));
     }
 
+    /**
+     * @MethodName format
+     * @Author Hai.Ming
+     * @Date 2021/5/28 10:04
+     * @Description 按指定格式转化当前时间为 String
+     **/
     public static String format(String pattern) {
         return format(now(), pattern);
     }
@@ -80,7 +101,7 @@ public class TimeUtils {
      * @Description LocalDate -> Date
      **/
     public static Date toDate(LocalDate localDate) {
-        return Date.from(localDate.atStartOfDay(ZoneOffset.ofHours(8)).toInstant());
+        return Date.from(localDate.atStartOfDay(zoneId).toInstant());
     }
 
     /**
