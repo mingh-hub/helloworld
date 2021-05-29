@@ -74,6 +74,8 @@ public class PreparedStatementDemoTest {
     @Test
     public void testBatchAdd() throws Exception {
         List<SqlBean> beanList = Lists.newArrayList();
+        beanList.add(this.buildSqlBean("李四", 33, LocalDate.of(1988, 5, 27), "是个爱吹牛的人"));
+        beanList.add(this.buildSqlBean("王五", 41, LocalDate.of(1980, 7, 15), "是个爱做梦的人"));
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
         preparedStatement.batchAdd(beanList);
@@ -87,7 +89,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testAdd() throws Exception {
-        preparedStatement.add(this.buildSqlBean("王五", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
+        preparedStatement.add(this.buildSqlBean("张三", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
     }
 
     private SqlBean buildSqlBean(String name, int age, LocalDate birthday, String desc) {

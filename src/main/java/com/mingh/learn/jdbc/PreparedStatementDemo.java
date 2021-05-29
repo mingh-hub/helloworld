@@ -60,7 +60,7 @@ public class PreparedStatementDemo {
      * @Description PreparedStatement-根据 id 更新描述信息
      **/
     public boolean updateById(long id, String desc) throws Exception{
-        String updateSql = "update test set description=? where id =?";
+        String updateSql = "update t_learn_jdbc_base set description=? where id =?";
         PreparedStatement pstmt = conn.prepareStatement(updateSql);
         pstmt.setString(1, desc);
         pstmt.setLong(2, id);
@@ -82,7 +82,7 @@ public class PreparedStatementDemo {
         conn.setAutoCommit(false);
         try {
             // 预处理数据
-            String sql = "insert into test(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_dev_num'), ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into t_learn_jdbc_base(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_learn_num'), ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             for (int i = 0; i < beans.size(); i++) {
                 pstmt.setString(1, beans.get(i).getName());
@@ -117,7 +117,7 @@ public class PreparedStatementDemo {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
         // 预处理数据
-        String sql = "insert into test(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_dev_num'), ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into t_learn_jdbc_base(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_learn_num'), ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         for (SqlBean bean : beans) {
             pstmt.setString(1, bean.getName());
@@ -143,7 +143,7 @@ public class PreparedStatementDemo {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
         // 预处理数据
-        String sql = "insert into test(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_dev_num'), ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into t_learn_jdbc_base(id, name, age, birthday, description, create_time, update_time) values (nextval('seq_learn_num'), ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, bean.getName());
         pstmt.setInt(2, bean.getAge());
