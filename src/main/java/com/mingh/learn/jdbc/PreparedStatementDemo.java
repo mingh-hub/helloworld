@@ -47,7 +47,7 @@ public class PreparedStatementDemo {
         }
         List<SqlBean> results = Lists.newArrayList();
         while (rs.next()) {
-            // TODO: 2021/5/28 处理结果
+
         }
         conn.close();
         return results;

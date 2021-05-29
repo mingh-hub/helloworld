@@ -31,7 +31,7 @@ public class CommonConstants {
     /**
      * DB_URL
      */
-    public static final String DB_URL = "jdbc:mysql://10.3.211.13:3306/loki_dev?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/learn?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
     /**
      * DB_NAME
      */
@@ -39,5 +39,5 @@ public class CommonConstants {
     /**
      * DB_PASSWORD
      */
-    public static final String DB_PASSWORD = "xhqb@2020";
+    public static final String DB_PASSWORD = "Ming@hai110";
 }
