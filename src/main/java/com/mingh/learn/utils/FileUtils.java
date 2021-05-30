@@ -3,12 +3,12 @@ package com.mingh.learn.utils;
 import com.mingh.learn.common.constant.CommonConstants;
 import com.mingh.learn.common.enums.ResultEnum;
 import com.mingh.learn.common.exception.BusinessRuntimeException;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.BASE64DecoderStream;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.util.Base64;
 import java.util.Objects;
 
 /**
@@ -39,10 +39,10 @@ public class FileUtils {
         if (StringUtils.isBlank(srcFileFullName) || StringUtils.isBlank(targetFileFullName)) {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
-        String srcFileName = srcFileFullName.substring(srcFileFullName.lastIndexOf(CommonConstants.SEPARATOR_SLASH) + 1);
-        String srcFilePath = srcFileFullName.substring(0, srcFileFullName.lastIndexOf(CommonConstants.SEPARATOR_SLASH));
-        String targetFileName = targetFileFullName.substring(targetFileFullName.lastIndexOf(CommonConstants.SEPARATOR_SLASH) + 1);
-        String targetFilePath = targetFileFullName.substring(0, targetFileFullName.lastIndexOf(CommonConstants.SEPARATOR_SLASH));
+        String srcFileName = srcFileFullName.substring(srcFileFullName.lastIndexOf(CommonConstants.SEPARATOR_FORWARD_SLASH) + 1);
+        String srcFilePath = srcFileFullName.substring(0, srcFileFullName.lastIndexOf(CommonConstants.SEPARATOR_FORWARD_SLASH));
+        String targetFileName = targetFileFullName.substring(targetFileFullName.lastIndexOf(CommonConstants.SEPARATOR_FORWARD_SLASH) + 1);
+        String targetFilePath = targetFileFullName.substring(0, targetFileFullName.lastIndexOf(CommonConstants.SEPARATOR_FORWARD_SLASH));
         return createFile(srcFilePath, srcFileName, targetFilePath, targetFileName, base64Flag);
     }
 
@@ -116,7 +116,7 @@ public class FileUtils {
         if (StringUtils.isBlank(fileFullName)) {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
-        return getBytesByFilePath(fileFullName.substring(0, fileFullName.lastIndexOf(CommonConstants.SEPARATOR_SLASH)), fileFullName.substring(fileFullName.lastIndexOf(CommonConstants.SEPARATOR_SLASH) + 1), Boolean.FALSE);
+        return getBytesByFilePath(fileFullName.substring(0, fileFullName.lastIndexOf(CommonConstants.SEPARATOR_FORWARD_SLASH)), fileFullName.substring(fileFullName.lastIndexOf(CommonConstants.SEPARATOR_FORWARD_SLASH) + 1), Boolean.FALSE);
     }
 
     /**
@@ -156,7 +156,6 @@ public class FileUtils {
         if (Objects.isNull(inputStream)) {
             throw new BusinessRuntimeException(ResultEnum.PARAMS_IS_MISSING);
         }
-        inputStream = BooleanUtils.isFalse(base64Flag) ? inputStream : new BASE64DecoderStream(inputStream);
         ByteArrayOutputStream output = null;
         try {
             output = new ByteArrayOutputStream();
@@ -183,6 +182,6 @@ public class FileUtils {
                 }
             }
         }
-        return output.toByteArray();
+        return base64Flag ? Base64.getDecoder().decode(output.toByteArray()) : output.toByteArray();
     }
 }

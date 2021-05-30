@@ -36,6 +36,14 @@ public enum ResultEnum {
      * 没有结果
      */
     NO_RESULT("000006", "没有结果"),
+    /**
+     * 文件已存在
+     */
+    FILE_IS_EXIST("000007", "文件已存在"),
+    /**
+     * 文件创建失败
+     */
+    FILE_CREATE_FAILURE("000008", "文件创建失败"),
     ;
      private String code;
      private String msg;

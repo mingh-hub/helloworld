@@ -1,4 +1,4 @@
-package com.mingh.learn.file;
+package com.mingh.learn.utils;
 
 import org.junit.Test;
 

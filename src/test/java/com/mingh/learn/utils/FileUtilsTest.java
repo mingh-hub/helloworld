@@ -1,6 +1,5 @@
-package com.mingh.learn.file;
+package com.mingh.learn.utils;
 
-import com.mingh.learn.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

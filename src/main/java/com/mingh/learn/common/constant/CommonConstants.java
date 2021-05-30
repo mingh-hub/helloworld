@@ -9,9 +9,13 @@ public class CommonConstants {
      */
     public static final String SEPARATOR_UNDERLINE = "_";
     /**
-     * 分隔符: /
+     * 正向分隔符: /
      */
-    public static final String SEPARATOR_SLASH = "/";
+    public static final String SEPARATOR_FORWARD_SLASH = "/";
+    /**
+     * 反向分隔符: \
+     */
+    public static final String SEPARATOR_REVERSE_SLASH = "\\";
     /**
      * 默认日期格式
      */
