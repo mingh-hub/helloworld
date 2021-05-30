@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @ClassName FileDemo
@@ -16,6 +18,38 @@ import java.io.IOException;
  */
 @Slf4j
 public class FileDemo {
+
+    /**
+     * @MethodName listAllFilesWithFilter
+     * @Author Hai.Ming
+     * @Date 2021/5/30 23:24
+     * @Description 根据指定 filePath 列出该路径下指定后缀的文件
+     **/
+    public void listAllFilesWithFilter(String filePath, String suffix) {
+        Objects.requireNonNull(filePath, suffix);
+        File[] files = new File(filePath).listFiles(file -> file.exists() && file.isFile() && StringUtils.endsWith(file.getName(), suffix));
+        Arrays.stream(files).forEach(file -> log.info("文件: {}", file.getAbsolutePath()));
+    }
+
+    /**
+     * @MethodName listAllFiles
+     * @Author Hai.Ming
+     * @Date 2021/5/30 22:23
+     * @Description 根据指定 filePath 列出其下所有 file 文件
+     **/
+    public void listAllFiles(String filePath) {
+        Objects.requireNonNull(filePath);
+        File[] files = new File(filePath).listFiles();
+        if (Objects.nonNull(files)) {
+            Arrays.stream(files).forEach(file -> {
+                if (file.exists() && file.isFile()) {
+                    log.info("文件: {}", file.getAbsolutePath());
+                } else {
+                    listAllFiles(file.getPath());
+                }
+            });
+        }
+    }
 
     /**
      * @MethodName createFile

@@ -14,6 +14,34 @@ import org.junit.jupiter.api.Test;
 public class FileDemoTest {
 
     /**
+     * @MethodName testListAllFilesBySpecifiedPathnameWithFilter
+     * @Author Hai.Ming
+     * @Date 2021/5/30 23:16
+     * @Description 根据指定 pathname 过滤出所需文件
+     **/
+    @Test
+    public void testListAllFilesBySpecifiedPathnameWithFilter() {
+        // 列出 /Users/user/mingh/maven/mvn-repo/com/xhqb/usercenter/usercenter/4.0.0-SNAPSHOT/ 路径下的 pom 文件
+        String filePath = "/Users/user/mingh/maven/mvn-repo/com/xhqb/usercenter/usercenter/4.0.0-SNAPSHOT/";
+        String suffix = "pom";
+        FileDemo fileDemo = new FileDemo();
+        fileDemo.listAllFilesWithFilter(filePath, suffix);
+    }
+
+    /**
+     * @MethodName testListAllFilesBySpecifiedPathname
+     * @Author Hai.Ming
+     * @Date 2021/5/30 23:03
+     * @Description 根据指定目录列出该目录下的所有文件
+     **/
+    @Test
+    public void testListAllFilesBySpecifiedPathname() {
+        String filePath = "/Users/user/mingh/maven";
+        FileDemo fileDemo = new FileDemo();
+        fileDemo.listAllFiles(filePath);
+    }
+
+    /**
      * @MethodName testCreateFile
      * @Author Hai.Ming
      * @Date 2021/5/30 18:37
