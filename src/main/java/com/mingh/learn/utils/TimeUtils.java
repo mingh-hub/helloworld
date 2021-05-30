@@ -75,6 +75,16 @@ public class TimeUtils {
     }
 
     /**
+     * @MethodName toLocalDate
+     * @Author Hai.Ming
+     * @Date 2021/5/30 16:23
+     * @Description java.sql.Date -> LocalDate
+     **/
+    public static LocalDate toLocalDate(java.sql.Date date) {
+        return date.toLocalDate();
+    }
+
+    /**
      * @MethodName toLocalDateTime
      * @Author Hai.Ming
      * @Date 2021/5/27 19:54
@@ -82,6 +92,16 @@ public class TimeUtils {
      **/
     public static LocalDateTime toLocalDateTime(Date date) {
         return date.toInstant().atZone(zoneId).toLocalDateTime();
+    }
+
+    /**
+     * @MethodName toLocalDateTime
+     * @Author Hai.Ming
+     * @Date 2021/5/30 16:24
+     * @Description java.sql.Date -> LocalDateTime
+     **/
+    public static LocalDateTime toLocalDateTime(java.sql.Date date) {
+        return date.toLocalDate().atStartOfDay();
     }
 
     /**

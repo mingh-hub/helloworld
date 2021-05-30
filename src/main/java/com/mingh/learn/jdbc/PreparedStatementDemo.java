@@ -39,7 +39,7 @@ public class PreparedStatementDemo {
      * @Description PreparedStatement-查询所有数据
      **/
     public List<SqlBean> queryAll() throws Exception{
-        String queryAllSql = "";
+        String queryAllSql = "select id, name, age, birthday, description, create_time, update_time from t_learn_jdbc_base";
         PreparedStatement pstmt = conn.prepareStatement(queryAllSql);
         ResultSet rs = pstmt.executeQuery();
         if (Objects.isNull(rs)) {
@@ -47,7 +47,16 @@ public class PreparedStatementDemo {
         }
         List<SqlBean> results = Lists.newArrayList();
         while (rs.next()) {
-
+            results.add(SqlBean.builder()
+                    .id(rs.getLong(1))
+                    .name(rs.getString(2))
+                    .age(rs.getInt(3))
+                    .birthday(Objects.isNull(rs.getDate(4)) ? null : TimeUtils.toLocalDate(rs.getDate(4)))
+                    .description(rs.getString(5))
+                    .createTime(Objects.isNull(rs.getDate(6)) ? null : TimeUtils.toLocalDateTime(rs.getDate(6)))
+                    .updateTime(Objects.isNull(rs.getDate(7)) ? null : TimeUtils.toLocalDateTime(rs.getDate(7)))
+                    .build()
+            );
         }
         conn.close();
         return results;

@@ -32,12 +32,12 @@ public class StatementDemo {
     private String password;
 
     /**
-     * @MethodName queryWithStatement
+     * @MethodName queryWithSql
      * @Author Hai.Ming
      * @Date 2021/5/26 19:54
      * @Description Statement 查询操作
      **/
-    public List<SqlBean> queryWithStatement(String sql) throws Exception {
+    public List<SqlBean> queryWithSql(String sql) throws Exception {
         // 1. 加载数据库驱动程序
         Class.forName(dbDriver);
         // 2. 连接数据库
@@ -62,12 +62,12 @@ public class StatementDemo {
     }
 
     /**
-     * @MethodName updateWithStatement
+     * @MethodName updateWithSql
      * @Author Hai.Ming
      * @Date 2021/5/25 20:48
      * @Description Statement 更新操作
      **/
-    public void updateWithStatement(String sql) throws Exception {
+    public void updateWithSql(String sql) throws Exception {
         // 1. 加载数据库驱动程序
         Class.forName(dbDriver);
         // 2. 连接数据库

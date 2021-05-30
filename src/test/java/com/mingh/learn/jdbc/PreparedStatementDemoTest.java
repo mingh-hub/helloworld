@@ -1,5 +1,6 @@
 package com.mingh.learn.jdbc;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.mingh.learn.common.constant.CommonConstants;
 import com.mingh.learn.jdbc.bean.SqlBean;
@@ -22,7 +23,7 @@ import java.util.List;
 @Slf4j
 public class PreparedStatementDemoTest {
 
-    private PreparedStatementDemo preparedStatement;
+    private PreparedStatementDemo preparedStatementDemo;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -30,13 +31,25 @@ public class PreparedStatementDemoTest {
         Class.forName(CommonConstants.DB_DRIVER);
         // 连接数据库
         Connection conn = DriverManager.getConnection(CommonConstants.DB_URL, CommonConstants.DB_NAME, CommonConstants.DB_PASSWORD);
-        preparedStatement = PreparedStatementDemo.builder()
+        preparedStatementDemo = PreparedStatementDemo.builder()
                 .dbDriver(CommonConstants.DB_DRIVER)
                 .dbUrl(CommonConstants.DB_URL)
                 .userName(CommonConstants.DB_NAME)
                 .password(CommonConstants.DB_PASSWORD)
                 .conn(conn)
                 .build();
+    }
+
+    /**
+     * @MethodName testQueryAll
+     * @Author Hai.Ming
+     * @Date 2021/5/30 13:12
+     * @Description 测试查询所有数据及对返回数据的处理
+     **/
+    @Test
+    public void testQueryAll() throws Exception {
+        List<SqlBean> beans = preparedStatementDemo.queryAll();
+        log.info("查询所有数据, 结果: {}", JSON.toJSONString(beans));
     }
 
     /**
@@ -47,7 +60,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testUpdate() throws Exception {
-        preparedStatement.updateById(2, "是个混吃等死的人");
+        preparedStatementDemo.updateById(2, "是个混吃等死的人");
     }
 
     /**
@@ -62,7 +75,7 @@ public class PreparedStatementDemoTest {
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
 
-        preparedStatement.batchAddWithException(beanList);
+        preparedStatementDemo.batchAddWithException(beanList);
     }
 
     /**
@@ -78,7 +91,7 @@ public class PreparedStatementDemoTest {
         beanList.add(this.buildSqlBean("王五", 41, LocalDate.of(1980, 7, 15), "是个爱做梦的人"));
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
-        preparedStatement.batchAdd(beanList);
+        preparedStatementDemo.batchAdd(beanList);
     }
 
     /**
@@ -89,7 +102,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testAdd() throws Exception {
-        preparedStatement.add(this.buildSqlBean("张三", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
+        preparedStatementDemo.add(this.buildSqlBean("张三", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
     }
 
     private SqlBean buildSqlBean(String name, int age, LocalDate birthday, String desc) {
