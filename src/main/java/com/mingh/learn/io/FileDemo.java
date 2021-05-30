@@ -28,6 +28,7 @@ public class FileDemo {
     public void listAllFilesWithFilter(String filePath, String suffix) {
         Objects.requireNonNull(filePath, suffix);
         File[] files = new File(filePath).listFiles(file -> file.exists() && file.isFile() && StringUtils.endsWith(file.getName(), suffix));
+        assert files != null;
         Arrays.stream(files).forEach(file -> log.info("文件: {}", file.getAbsolutePath()));
     }
 
@@ -40,15 +41,16 @@ public class FileDemo {
     public void listAllFiles(String filePath) {
         Objects.requireNonNull(filePath);
         File[] files = new File(filePath).listFiles();
-        if (Objects.nonNull(files)) {
-            Arrays.stream(files).forEach(file -> {
-                if (file.exists() && file.isFile()) {
-                    log.info("文件: {}", file.getAbsolutePath());
-                } else {
-                    listAllFiles(file.getPath());
-                }
-            });
+        if (Objects.isNull(files)) {
+            return;
         }
+        Arrays.stream(files).forEach(file -> {
+            if (file.exists() && file.isFile()) {
+                log.info("文件: {}", file.getAbsolutePath());
+            } else {
+                listAllFiles(file.getPath());
+            }
+        });
     }
 
     /**
