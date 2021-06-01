@@ -31,7 +31,7 @@ public class OutputStreamLearnTest {
      **/
     @Test
     public void testOutputWithOverride() {
-        String filePath = "/Users/user/Desktop/test.txt";
+        String filePath = "/Users/user/Desktop/my.txt";
         OutputStreamLearn learn = new OutputStreamLearn();
         learn.outputWithOverride(filePath);
     }

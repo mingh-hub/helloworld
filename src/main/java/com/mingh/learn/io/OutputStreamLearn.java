@@ -28,8 +28,9 @@ public class OutputStreamLearn {
         OutputStream output;
         try {
             File file = new File(filePath);
-            if (!file.exists()) {
-                file.createNewFile();
+            // 父路径不存在时, 需要创建
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
             }
             output = new FileOutputStream(file, true);
             for (int i = 0; i < 10; i++) {
@@ -51,11 +52,17 @@ public class OutputStreamLearn {
         OutputStream output;
         try {
             File file = new File(filePath);
-            if (!file.exists()) {
-                file.createNewFile();
+            // 父路径不存在时, 需要创建
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
             }
             output = new FileOutputStream(file);
-            output.write(HELLO_WORLD.getBytes(StandardCharsets.UTF_8));
+            byte[] data = "测试数据覆盖输出".getBytes(StandardCharsets.UTF_8);
+            for (int i = 0; i < data.length; i++) {
+                // 在调用 write() 方法时就会将字节输出到文本了
+                output.write(data[i]);
+            }
+
             output.close();
         } catch (Exception e) {
             log.error("file output error. ", e);
