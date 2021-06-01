@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @ClassName PreparedStatementDemo
+ * @ClassName PreparedStatementLearn
  * @Author Hai.Ming
  * @Date 2021/5/26 20:32
  * @Description 通过 PreparedStatement 测试操作数据库
@@ -25,7 +25,7 @@ import java.util.Objects;
 @Slf4j
 @Data
 @Builder
-public class PreparedStatementDemo {
+public class PreparedStatementLearn {
     private String dbDriver;
     private String dbUrl;
     private String userName;

@@ -15,15 +15,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * @ClassName PreparedStatementDemoTest
+ * @ClassName PreparedStatementLearnTest
  * @Author Hai.Ming
  * @Date 2021/5/26 20:52
  * @Description test for PreparedStatement
  */
 @Slf4j
-public class PreparedStatementDemoTest {
+public class PreparedStatementLearnTest {
 
-    private PreparedStatementDemo preparedStatementDemo;
+    private PreparedStatementLearn preparedStatementLearn;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -31,7 +31,7 @@ public class PreparedStatementDemoTest {
         Class.forName(CommonConstants.DB_DRIVER);
         // 连接数据库
         Connection conn = DriverManager.getConnection(CommonConstants.DB_URL, CommonConstants.DB_NAME, CommonConstants.DB_PASSWORD);
-        preparedStatementDemo = PreparedStatementDemo.builder()
+        preparedStatementLearn = PreparedStatementLearn.builder()
                 .dbDriver(CommonConstants.DB_DRIVER)
                 .dbUrl(CommonConstants.DB_URL)
                 .userName(CommonConstants.DB_NAME)
@@ -48,7 +48,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testQueryAll() throws Exception {
-        List<SqlBean> beans = preparedStatementDemo.queryAll();
+        List<SqlBean> beans = preparedStatementLearn.queryAll();
         log.info("查询所有数据, 结果: {}", JSON.toJSONString(beans));
     }
 
@@ -60,7 +60,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testUpdate() throws Exception {
-        preparedStatementDemo.updateById(2, "是个混吃等死的人");
+        preparedStatementLearn.updateById(2, "是个混吃等死的人");
     }
 
     /**
@@ -75,7 +75,7 @@ public class PreparedStatementDemoTest {
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
 
-        preparedStatementDemo.batchAddWithException(beanList);
+        preparedStatementLearn.batchAddWithException(beanList);
     }
 
     /**
@@ -91,7 +91,7 @@ public class PreparedStatementDemoTest {
         beanList.add(this.buildSqlBean("王五", 41, LocalDate.of(1980, 7, 15), "是个爱做梦的人"));
         beanList.add(this.buildSqlBean("孙悟空", 102, LocalDate.of(1990, 11, 27), "是个爱打妖怪的人"));
         beanList.add(this.buildSqlBean("唐僧", 88, LocalDate.of(1990, 11, 27), "是个爱取经的人"));
-        preparedStatementDemo.batchAdd(beanList);
+        preparedStatementLearn.batchAdd(beanList);
     }
 
     /**
@@ -102,7 +102,7 @@ public class PreparedStatementDemoTest {
      **/
     @Test
     public void testAdd() throws Exception {
-        preparedStatementDemo.add(this.buildSqlBean("张三", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
+        preparedStatementLearn.add(this.buildSqlBean("张三", 24, LocalDate.of(1990, 11, 27), "是个爱打麻将的人"));
     }
 
     private SqlBean buildSqlBean(String name, int age, LocalDate birthday, String desc) {

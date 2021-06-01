@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @ClassName StatementDemo
+ * @ClassName StatementLearn
  * @Author Hai.Ming
  * @Date 2021/5/25 20:40
  * @Description 通过 Statement 测试操作数据库
@@ -24,7 +24,7 @@ import java.util.Objects;
 @Slf4j
 @Data
 @Builder
-public class StatementDemo {
+public class StatementLearn {
 
     private String dbDriver;
     private String dbUrl;
