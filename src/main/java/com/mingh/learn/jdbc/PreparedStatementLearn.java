@@ -6,7 +6,7 @@ import com.mingh.learn.common.exception.BusinessRuntimeException;
 import com.mingh.learn.jdbc.bean.SqlBean;
 import com.mingh.learn.utils.TimeUtils;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -23,7 +23,7 @@ import java.util.Objects;
  * @Description 通过 PreparedStatement 测试操作数据库
  */
 @Slf4j
-@Data
+@Getter
 @Builder
 public class PreparedStatementLearn {
     private String dbDriver;

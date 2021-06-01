@@ -3,7 +3,7 @@ package com.mingh.learn.jdbc;
 import com.google.common.collect.Lists;
 import com.mingh.learn.jdbc.bean.SqlBean;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
@@ -22,7 +22,7 @@ import java.util.Objects;
  * @Description 通过 Statement 测试操作数据库
  */
 @Slf4j
-@Data
+@Getter
 @Builder
 public class StatementLearn {
 
