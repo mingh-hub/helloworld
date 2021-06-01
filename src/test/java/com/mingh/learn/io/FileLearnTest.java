@@ -5,13 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 /**
- * @ClassName FileDemoTest
+ * @ClassName FileLearnTest
  * @Author Hai.Ming
  * @Date 2021/5/30 18:10
  * @Description test FileDemo
  */
 @Slf4j
-public class FileDemoTest {
+public class FileLearnTest {
 
     /**
      * @MethodName testListAllFilesBySpecifiedPathnameWithFilter
@@ -24,7 +24,7 @@ public class FileDemoTest {
         // 列出 /Users/user/mingh/maven/mvn-repo/com/xhqb/usercenter/usercenter/4.0.0-SNAPSHOT/ 路径下的 pom 文件
         String filePath = "/Users/user/mingh/maven/mvn-repo/com/xhqb/usercenter/usercenter/4.0.0-SNAPSHOT/";
         String suffix = "pom";
-        FileDemo fileDemo = new FileDemo();
+        FileLearn fileDemo = new FileLearn();
         fileDemo.listAllFilesWithFilter(filePath, suffix);
     }
 
@@ -37,7 +37,7 @@ public class FileDemoTest {
     @Test
     public void testListAllFilesBySpecifiedPathname() {
         String filePath = "/Users/user/mingh/maven";
-        FileDemo fileDemo = new FileDemo();
+        FileLearn fileDemo = new FileLearn();
         fileDemo.listAllFiles(filePath);
     }
 
@@ -53,7 +53,7 @@ public class FileDemoTest {
         // 问题二: 文件的创建会存在延迟操作, 这种延迟操作很多时候是可以忽略掉的, 单也有一点不能忽略, 即刚刚删除了一个文件, 就有可能存在创建不了的情况
         // 问题三: 如果给定的文件目录不存在, 则文件无法创建。解决: 创建前先判断文件父路径是否存在, 不存在则先创建父路径 file.getParentFile().mkdirs()
         String filePath = "/Users/user/mingh/repository/study/helloworld/test.txt";
-        FileDemo fileDemo = new FileDemo();
+        FileLearn fileDemo = new FileLearn();
         fileDemo.createFile(BusinessUtils.filePathReplace(filePath));
     }
 }

@@ -11,13 +11,13 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * @ClassName FileDemo
+ * @ClassName FileLearn
  * @Author Hai.Ming
  * @Date 2021/5/30 17:50
  * @Description java.io.File相关操作
  */
 @Slf4j
-public class FileDemo {
+public class FileLearn {
 
     /**
      * @MethodName listAllFilesWithFilter
