@@ -35,7 +35,7 @@ public class ReaderLearn {
         try {
             reader = new FileReader(file);
             char[] data = new char[2048];
-            int len=0;
+            int len;
             StringBuffer buffer = new StringBuffer();
             if ((len = reader.read(data)) != -1) {
                 buffer.append(data, 0, len);
@@ -43,7 +43,7 @@ public class ReaderLearn {
             log.info("读取的数据为: {}", buffer.toString());
         } catch (Exception e) {
             log.error("数据读取异常", e);
-        }finally {
+        } finally {
             if (Objects.nonNull(reader)) {
                 try {
                     reader.close();
